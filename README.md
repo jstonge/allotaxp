@@ -1,38 +1,26 @@
-# create-svelte
+# ALLotaxonometer
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+<p align="center">
+  <img width="600" alt="Screenshot 2023-10-05 at 9 39 50 AM" src="https://github.com/jstonge/allotaxp/assets/35715881/8b5c4a10-18eb-4c21-bbb1-b736a3886273">
+</p>
 
-## Creating a project
+- See [jstonge/allotaxonometer](https://github.com/jstonge/allotaxonometer) for wrangling the input data in the right format.
+- Another version lives at [https://observablehq.com/@jstonge/allotaxonometer-4-all](https://observablehq.com/@jstonge/allotaxonometer-4-all)
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Current features
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+ - [ ] provide `.csv` files to make your analysis
+ - [ ] reactive slider to change the `alpha` parameter
+ - [ ] scrollytelling adventure to learn the `allotaxonometer` (still beta)
+ - [ ] download the output
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+### Roadmap
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+ - [ ] fix hover; right now hover doesn't see the transformation of the `rect` positions.
+ - [ ] ensure the dashboard looks well across platforms and screen sizes.
+ - [ ] make `alpha` slider reactive;
+ - [ ] integrate the `alph` slider to the `svg`
+ - [ ] add metrics beyond `rank_turbulence_divergence`
+ - [ ] call the `allotaxonometer.js` package instead of having the helper files in the project
+ - [ ] the output should be a `.pdf`
+ - [ ] python version to use the allotax programmatically
