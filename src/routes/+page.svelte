@@ -35,8 +35,8 @@
 	const alphas = range(0,18).map(v => +(v/12).toFixed(2)).concat([1, 2, 5, Infinity])
 
 	onMount(async () => {
-		test_elem_1  = await fetch(`src/routes/data/boys1895.json`).then((r) => r.json());
-		test_elem_2  = await fetch(`src/routes/data/boys1930.json`).then((r) => r.json());
+		test_elem_1  = await fetch(`https://raw.githubusercontent.com/jstonge/allotaxp/main/src/routes/data/boys1895.json`).then((r) => r.json());
+		test_elem_2  = await fetch(`https://raw.githubusercontent.com/jstonge/allotaxp/main/src/routes/data/boys1930.json`).then((r) => r.json());
 	});
 
 	// Title stuff
