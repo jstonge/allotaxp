@@ -1,14 +1,15 @@
 <script>
+	// @ts-nocheck
+
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
 </script>
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
+		<!-- <a href="https://kit.svelte.dev">
 			<img src={logo} alt="SvelteKit" />
-		</a>
+		</a> -->
 	</div>
 
 	<nav>
@@ -17,13 +18,10 @@
 		</svg>
 		<ul>
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
+				<a href="/">Allotaxonometer</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
-			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
+			<li aria-current={$page.url.pathname === '/tutorial' ? 'page' : undefined}>
+				<a href="/tutorial">Tutorial</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -32,7 +30,8 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
+
+		<a href="https://github.com/jstonge/allotax-app">
 			<img src={github} alt="GitHub" />
 		</a>
 	</div>
@@ -125,5 +124,10 @@
 
 	a:hover {
 		color: var(--color-theme-1);
+	}
+
+	.user-inputs {
+		height: 3em;
+		margin-top: 10px;
 	}
 </style>
