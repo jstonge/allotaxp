@@ -1,8 +1,11 @@
 <script>
+// @ts-nocheck
+    import { fly } from "svelte/transition";
+
     export let data;
     export let scale;
     export let width;
-  
+
     $: x = scale(data.x1);
     $: y = scale(data.y1);
   
@@ -13,25 +16,30 @@
   
     $: xPosition = x + tooltipWidth > width ? x - tooltipWidth - xNudge : x + xNudge;
     $: yPosition = y + yNudge;
-    </script>
+
+    // $: console.log((xPosition, yPosition))
+</script>
+
+ 
+<div
+  class="tooltip"
+  transition:fly={{ y: 10 }}
+  bind:clientWidth={tooltipWidth}
+  >
+  <h1>Types: <span>{data.types}</span></h1>
+</div>
   
-  <div
-    class="tooltip"
-    style="top: {yPosition}px; left: {xPosition}px"
-    bind:clientWidth={tooltipWidth}
-    >
-    <h1>Types: <span>{data.types}</span></h1>
-  </div>
-  
-  <style>
+<style>
     .tooltip {
-      position: absolute;
       padding: 8px 6px;
       background: white;
       box-shadow: rgba(0, 0, 0, 0.15) 2px 3px 8px;
       border-radius: 3px;
       pointer-events: none;
       transition: top 300ms ease, left 300ms ease;
+      position: absolute; 
+      left: 0; 
+      top: 0; 
     }
   
     h1,

@@ -10,11 +10,12 @@
     import { rin } from "./utils_helpers.js"
 
     export let diamond_dat;
+    export let hoveredData;
     export let relevant_types;
     export let max_rank_raw;
     export let height;
     export let title;
-    
+
     const margin = { inner: 160, diamond: 40 };
     
     $: innerHeight = height - margin.inner;   
@@ -44,43 +45,46 @@
 </script>
 
 
-        <g class='inner-chart' transform="translate(360, 0) scale (-1,1) rotate(45) translate({margin.inner/2}, {margin.inner/2})">
-            <polygon points={blue_triangle} fill="#89CFF0" fill-opacity=0.2 stroke="black" stroke-width=0.5/>
-            <polygon points={grey_triangle} fill="grey" fill-opacity=0.2 stroke="black" stroke-width=0.5/>
-            
-            <Grid  height={innerHeight} {wxy} {ncells} scale={linScale}></Grid>
-            <AxisY height={innerHeight} scale={logScale} {title}/>
-            <AxisX height={innerHeight} scale={logScale} {title}/>
-            
-            {#each diamond_dat as d}
-            <rect
+<g class='inner-chart' transform="translate(360, 0) scale (-1,1) rotate(45) translate({margin.inner/2}, {margin.inner/2})">
+    <polygon points={blue_triangle} fill="#89CFF0" fill-opacity=0.2 stroke="black" stroke-width=0.5/>
+    <polygon points={grey_triangle} fill="grey" fill-opacity=0.2 stroke="black" stroke-width=0.5/>
+    
+    <Grid  height={innerHeight} {wxy} {ncells} scale={linScale}></Grid>
+    <AxisY height={innerHeight} scale={logScale} {title}/>
+    <AxisX height={innerHeight} scale={logScale} {title}/>
+    
+    {#each diamond_dat as d}
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <rect
+            x={xy(d.x1)}
+            y={xy(d.y1)}
+            width={xy.bandwidth()}
+            height={xy.bandwidth()}
+            fill={color_scale(d.value)}
+            opacity={d.value === null ? 0 : 1.}
+            stroke="black"
+            stroke-width=0.2
+            on:mouseover={() => { hoveredData = d }}
+            on:focus={() => { hoveredData = d }}
+        />
+    {/each}
+    {#each diamond_dat.filter(d => filter_labs(d, relevant_types)) as d}
+        <g class="diamond-lab" 
+           transform="
+            scale(1,-1) 
+            rotate(-90) 
+            rotate(-45, {xy(d.x1)}, {xy(d.y1)}) 
+            translate({d.which_sys === "right" ? xy(Math.sqrt(d.cos_dist))*1.5 : -xy(Math.sqrt(d.cos_dist))*1.5}, 0)
+           ">
+           <text
                 x={xy(d.x1)}
-                y={xy(d.y1)}
-                width={xy.bandwidth()}
-                height={xy.bandwidth()}
-                fill={color_scale(d.value)}
-                opacity={d.value === null ? 0 : 1.}
-                stroke="black"
-                stroke-width=0.2
-            />
-            {/each}
-            {#each diamond_dat.filter(d => filter_labs(d, relevant_types)) as d}
-                <g class="diamond-lab" 
-                   transform="
-                    scale(1,-1) 
-                    rotate(-90) 
-                    rotate(-45, {xy(d.x1)}, {xy(d.y1)}) 
-                    translate({d.which_sys === "right" ? xy(Math.sqrt(d.cos_dist))*1.5 : -xy(Math.sqrt(d.cos_dist))*1.5}, 0)
-                   ">
-                   <text
-                        x={xy(d.x1)}
-                        y={Number.isInteger(d.coord_on_diag) ? xy(d.y1) : xy(d.y1)-1}
-                        dy={20}
-                        font-size="10"
-                        text-anchor={d.x1 - d.y1 <= 0 ? "start" : "end"}
-                   >{d.types.split(",")[0]}</text>
-                </g>
-                {/each}
-    </g>
+                y={Number.isInteger(d.coord_on_diag) ? xy(d.y1) : xy(d.y1)-1}
+                dy={20}
+                font-size="10"
+                text-anchor={d.x1 - d.y1 <= 0 ? "start" : "end"}
+           >{d.types.split(",")[0]}</text>
+        </g>
+        {/each}
+</g>
 
 

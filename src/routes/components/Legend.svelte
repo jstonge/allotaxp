@@ -14,9 +14,11 @@
   const margin = {  right: 40, top: 65, left: 10 };
   $: innerHeight = height - margin.top - margin.right;   
   $: max_rank = max(diamond_dat, (d) => d.rank_L[1]);
+  
+  // $: console.log(color.domain())
 
   $: y = scaleBand()
-          .domain(color.domain())
+          .domain(color.domain().reverse())
           .rangeRound([0, innerHeight]);
 
   $: logY = scaleLog()
