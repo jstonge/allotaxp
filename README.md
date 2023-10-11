@@ -9,15 +9,19 @@
 
 ### Current features
 
- - [ ] provide `.csv` files to make your analysis
- - [ ] reactive slider to change the `alpha` parameter
- - [ ] scrollytelling adventure to learn the `allotaxonometer` (still beta)
- - [ ] download the output
+ - provide `.csv` files to make your analysis
+ - reactive slider to change the `alpha` parameter
+ - scrollytelling adventure to learn the `allotaxonometer` (still beta)
+ - download the output (.png at the moment)
 
 ### Roadmap
 
  - [ ] fix hover; right now hover doesn't see the transformation of the `rect` positions.
  - [ ] ensure the dashboard looks well across platforms and screen sizes.
+ - [ ] add contour lines:
+   - [ ] $(\frac{1}{r_{1}^{\alpha}} - \frac{1}{r_{2}^{\alpha}}) = c$
+   - [ ] $\frac{1}{r_{1}^{\alpha}} = c + \frac{1}{r_{2}^{\alpha}}$
+   - [ ] $r_1 = (c + \frac{1}{r_{2}})^{-\alpha}$
  - [ ] make `alpha` slider reactive;
  - [ ] integrate the `alph` slider to the `svg`
  - [ ] add metrics beyond `rank_turbulence_divergence`
