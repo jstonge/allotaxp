@@ -18,10 +18,7 @@
 
  - [ ] fix hover; right now hover doesn't see the transformation of the `rect` positions.
  - [ ] ensure the dashboard looks well across platforms and screen sizes.
- - [ ] add contour lines:
-   - [ ] $(\frac{1}{r_{1}^{\alpha}} - \frac{1}{r_{2}^{\alpha}}) = c$
-   - [ ] $\frac{1}{r_{1}^{\alpha}} = c + \frac{1}{r_{2}^{\alpha}}$
-   - [ ] $r_1 = (c + \frac{1}{r_{2}})^{-\alpha}$
+ - [ ] add contour lines using [rank-turbulence](https://github.com/jstonge/allotaxonometer/blob/main/src/rank_turbulence_divergence.js#L13C1-L23C2)
  - [ ] make `alpha` slider reactive;
  - [ ] integrate the `alph` slider to the `svg`
  - [ ] add metrics beyond `rank_turbulence_divergence`
