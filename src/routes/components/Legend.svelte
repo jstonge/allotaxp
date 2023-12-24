@@ -12,11 +12,10 @@
   let height = 370;
 
   const margin = {  right: 40, top: 65, left: 10 };
+  
   $: innerHeight = height - margin.top - margin.right;   
   $: max_rank = max(diamond_dat, (d) => d.rank_L[1]);
   
-  // $: console.log(color.domain())
-
   $: y = scaleBand()
           .domain(color.domain().reverse())
           .rangeRound([0, innerHeight]);
@@ -30,25 +29,32 @@
 </script>
 
 
-        <g class="legend-container" transform="translate({margin.left}, {DiamondHeight-margin.top})">
-          {#each color.domain() as d}
-          <rect
-              x={ 0 }
-              y={ y(d) }
-              width={ 14 }
-              height={ 13 }
-              fill={ color(d) }
-              stroke="whitesmoke"
-              stroke-width="1"
-          ></rect>
-          {/each}
-        </g>
-        {#each yTicks as tick, i}
-          <g class="legend-text" transform="translate({margin.left}, {DiamondHeight+logY(tick)-margin.top})">
-            <text
-              font-size="10" 
-              dy={yTicks.length-1 == i ? "-3" :  "13"}
-              dx="20"
-            >{ logFormat10(tick) }</text>
-          </g>
-        {/each}
+<g class="legend-container" transform="translate({margin.left}, {DiamondHeight-margin.top})">
+  {#each color.domain() as d}
+    <rect
+        x={ 0 }
+        y={ y(d) }
+        width={ 14 }
+        height={ 13 }
+        fill={ color(d) }
+        stroke="whitesmoke"
+        stroke-width="1"
+    ></rect>
+  {/each}
+</g>
+{#each yTicks as tick, i}
+  <g class="legend-text" transform="translate({margin.left}, {DiamondHeight+logY(tick)-margin.top})">
+    <text
+      font-size="10" 
+      dy={ yTicks.length-1 == i ? "-3" :  "13" }
+      dx="20"
+      >{ logFormat10(tick) }</text>
+    </g>
+  {#if i === yTicks.length-1}
+    <g class="legend-title" transform="translate({margin.left}, {DiamondHeight+logY(tick)-margin.top})">
+      <text      
+      font-size="13" 
+      dy={"9"}>Counts per cell</text>
+    </g>
+  {/if}
+{/each}

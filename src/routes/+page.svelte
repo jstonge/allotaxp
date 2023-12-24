@@ -33,7 +33,7 @@
 
 	const margin = { inner: 160, diamond: 40 };
 
-	let DashboardHeight = 800;
+	let DashboardHeight = 815;
 	let DashboardWidth = 1200;
 	let DiamondHeight = 600;
 	let DiamondWidth = 600;
@@ -109,6 +109,11 @@
         return rin(relevant_types, d.types.split(",")).some((x) => x === true)
     }
 
+
+	const numParts = 10;
+	const y2s = Array.from({ length: numParts }, (_, i) => (440 / numParts) * i);
+	const x2s = Array.from({ length: numParts }, (_, i) => 100 / Math.pow(2, i));
+	
 </script>
 
 <svelte:head>
@@ -182,8 +187,8 @@
 			<g>
 				{#each title as suptitle, i}
 					<text
-						x={i == 0 ? 100 : 510}
-						y={80}
+						x={ i == 0 ? 100 : 510 }
+						y={ 80 }
 						font-size="25px"
 					>{suptitle}</text>
 				{/each}
