@@ -2,8 +2,7 @@
     // @ts-nocheck
 
     import * as d3 from "d3";
-    import diamond from "./diamond_count";
-
+    
     export let barData;
 
     let margin = ({ top: 80, left: 140, right: 50, bottom: 10 })

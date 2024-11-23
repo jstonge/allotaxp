@@ -1,13 +1,13 @@
 <script>
-// @ts-nocheck
+    // @ts-nocheck
 
- export let scale;
- export let height;
- export let wxy;
- export let ncells
+    export let scale;
+    export let height;
+    export let wxy;
+    export let ncells
 
- $: xygridLines = scale.ticks(ncells/2)
-
+    $: xygridLines = scale.ticks(ncells/2)
+    
 </script>
 
 <g class="grid">

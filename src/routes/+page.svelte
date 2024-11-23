@@ -8,7 +8,9 @@
 	import Tooltip from "./components/Tooltip.svelte";
 	import MathJax from './MathJax.svelte';
 
-	import { combElems, RTD, myDiamond, wordShift_dat } from "./components/combine_distributions.js"
+	import Contours from "./components/Contours.svelte";
+
+	import { combElems, RTD, myDiamond, wordShift_dat } from 'allotaxonometer';
 	import { downloadChart, get_relevant_types } from "./components/utils_helpers"
 	
 	import { range, max, scaleBand } from 'd3'
@@ -52,7 +54,7 @@
 	$: title = ['Boys 1895', 'Boys 1930']
 
 	// DATA WRANGLING - needs to be reactive, but could be refactor
-	$: alpha = 0.92;
+	$: alpha = 0.42;
 	$: me = combElems(test_elem_1, test_elem_2);
 	$: rtd = RTD(me, alpha);
 	$: dat = myDiamond(me, rtd);
@@ -87,7 +89,7 @@
 		});
 	}
     
-    $: innerHeight = DiamondHeight - margin.inner;   
+    const innerHeight = DiamondHeight - margin.inner;   
     $: diamondHeight = innerHeight - margin.diamond;
 
     $: ncells = d3.max(max_rank_raw)
@@ -193,13 +195,16 @@
 					>{suptitle}</text>
 				{/each}
 			</g>
-			<g class='inner-chart' transform="translate(360, 0) scale (-1,1) rotate(45) translate({margin.inner/2}, {margin.inner/2})">
-				<polygon points={blue_triangle} fill="#89CFF0" fill-opacity=0.2 stroke="black" stroke-width=0.5/>
-				<polygon points={grey_triangle} fill="grey" fill-opacity=0.2 stroke="black" stroke-width=0.5/>
+			<!-- <g class='inner-chart' transform="translate({DashboardWidth / 2.5}, -25) rotate(135) scale(1,-1)"> -->
+			<g class='inner-chart'>
+				<!-- <polygon points={blue_triangle} fill="#89CFF0" fill-opacity=0.2 stroke="black" stroke-width=0.5/> -->
+				<!-- <polygon points={grey_triangle} fill="grey" fill-opacity=0.2 stroke="black" stroke-width=0.5/> -->
 				
-				<Grid  height={innerHeight} {wxy} {ncells} scale={linScale}></Grid>
-				<AxisY height={innerHeight} scale={logScale} {title}/>
+				<!-- <Grid  height={innerHeight} {wxy} {ncells} scale={linScale}></Grid> -->
+				<!-- <AxisY height={innerHeight} scale={logScale} {title}/>
 				<AxisX height={innerHeight} scale={logScale} {title}/>
+				 -->
+				 <Contours visHeight={innerHeight} alpha={alpha} />
 				
 				{#each diamond_dat as d}
 					<rect
@@ -215,6 +220,7 @@
 						on:focus={() => { hoveredData = d }}
 					/>
 				{/each}
+
 				{#each diamond_dat.filter(d => filter_labs(d, relevant_types)) as d}
 					<g class="diamond-lab" 
 					   transform="
@@ -234,7 +240,7 @@
 					{/each}
 			</g>			
 			<Wordshift {barData} {DashboardHeight} {DashboardWidth}/>
-			<DivergingBarChart {test_elem_1} {test_elem_2} {DiamondHeight} {DiamondWidth} /> 
+			<!-- <DivergingBarChart {test_elem_1} {test_elem_2} {DiamondHeight} {DiamondWidth} />  -->
 			<Legend {diamond_dat} {DiamondHeight}/> 
 		</svg>
 		<!-- {#if hoveredData} 

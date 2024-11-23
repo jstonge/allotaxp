@@ -16,7 +16,7 @@
 		<g class="tick-text" transform="translate({scale(tick)}, 0) scale(-1,1) rotate(45)">
 			<text font-size="10" dx="13" dy="13">{logFormat10(tick)}</text>
 		</g>
-		{/each}
+	{/each}
 	<g class="xlab" transform="scale(-1,1) translate(-{height}, 0)">
 		<text dy=45 x={height/2}>Rank r</text>
 		<text dy=63 x={height/2}>for</text>

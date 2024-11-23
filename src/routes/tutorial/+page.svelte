@@ -7,7 +7,7 @@
 	// @ts-nocheck
 
 	import { test_elem_1, test_elem_2 } from '../data/data.js'
-	import { combElems, RTD, myDiamond, wordShift_dat } from "../components/combine_distributions.js"
+	import { combElems, RTD, myDiamond, wordShift_dat } from "allotaxonometer"
 	import Hero from "../components/Hero.svelte";
 	import { range, max } from 'd3'
 	import BarChartRank from "../components/barChart_rank.svelte"

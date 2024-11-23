@@ -1,6 +1,6 @@
-<script>
+<!-- <script>
   import { test_elem_1, test_elem_2 } from './data/data.js'
-  import { combElems, RTD, myDiamond, wordShift_dat } from "./components/combine_distributions.js"
+  import { combElems, RTD, myDiamond, wordShift_dat } from "allotaxonometer"
 
   import Diamond from "./components/Diamond.svelte";
   import Wordshift from "./components/BarChart.svelte";
@@ -158,4 +158,4 @@
     right: 0;
     padding: 1rem;
   }
-</style>
+</style> -->

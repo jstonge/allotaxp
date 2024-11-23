@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import Diamond from "./Diamond.svelte";
     import Wordshift from "./BarChart.svelte";
     import mixedElems from "./combine_distributions.js"; 
@@ -17,4 +17,4 @@
     <div>
       <Wordshift {barData}/>
     </div>
-  </div>
+  </div> -->
